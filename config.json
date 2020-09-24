@@ -1,0 +1,75 @@
+{
+    "tractmeasures": [
+        "/home/brad/Desktop/app-compile-tractmeasures/data/acq_1/tractmeasure.tsv",
+        "/home/brad/Desktop/app-compile-tractmeasures/data/acq_2/tractmeasure.tsv",
+        "/home/brad/Desktop/app-compile-tractmeasures/data/acq_3/tractmeasure.tsv"
+    ],
+    "_app": "5d5c2a214cfacf00366c0fd0",
+    "_tid": 2,
+    "_inputs": [
+        {
+            "id": "tractmeasures",
+            "datatype": "5907d922436ee50ffde9c549",
+            "meta": {
+                "subject": "subj-1",
+                "session": "scanner_10"
+
+            },
+            "tags": [
+                "acq_1"
+            ],
+            "datatype_tags": [
+                "merged"
+            ],
+            "subdir": "5ef2dc0cbb6739041c9c76ac",
+            "dataset_id": "5ef2dc0cbb6739041c9c76ac",
+            "project": "5cb8973c71a8630036207a6a",
+            "task_id": "5f6cdcbd79a30b7a4eeca19b",
+            "keys": [
+                "tcks"
+            ]
+        },
+        {
+            "id": "tractmeasures",
+            "datatype": "5907d922436ee50ffde9c549",
+            "meta": {
+                "subject": "sub-1",
+                "session": "scanner_10"
+            },
+            "tags": [
+                "acq_2"
+            ],
+            "datatype_tags": [
+                "merged"
+            ],
+            "subdir": "5ef3d39bbb67395fa39e6f24",
+            "dataset_id": "5ef3d39bbb67395fa39e6f24",
+            "project": "5cb8973c71a8630036207a6a",
+            "task_id": "5f6cdcbd79a30b7a4eeca19b",
+            "keys": [
+                "tcks"
+            ]
+        },
+        {
+            "id": "tractmeasures",
+            "datatype": "5907d922436ee50ffde9c549",
+            "meta": {
+                "subject": "sub-1",
+                "session": "scanner_10"
+            },
+            "tags": [
+                "acq_3"
+            ],
+            "datatype_tags": [
+                "merged"
+            ],
+            "subdir": "5ef3d39bbb67395fa39e6f24",
+            "dataset_id": "5ef3d39bbb67395fa39e6f24",
+            "project": "5cb8973c71a8630036207a6a",
+            "task_id": "5f6cdcbd79a30b7a4eeca19b",
+            "keys": [
+                "tcks"
+            ]
+        }
+    ]
+}

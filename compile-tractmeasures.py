@@ -21,8 +21,6 @@ def concatenateData(tsvs,subject,session,tag):
 
 	data.to_csv('./tractmeasures/tractmeasure.csv',sep='\t',index=False)
 	
-    return data
-
 def main():
 
 	print("setting up input parameters")
