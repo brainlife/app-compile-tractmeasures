@@ -6,7 +6,7 @@
 #PBS -N app-compile-tractmeasures
 #PBS -V
 
-set -e
+#set -e
 
 # generate csv that can be useful in MLC analyses
 [ ! -f ./tractmeasures/output_FiberStats.csv ] && time singularity exec -e docker://brainlife/freesurfer-stats:1.2 ./compile-tractmeasures.py
