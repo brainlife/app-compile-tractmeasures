@@ -12,8 +12,8 @@ def concatenateData(tsvs,subject,session,tag):
 	# combine tsvs
 	data = pd.concat((pd.read_csv(f,sep='\t',index_col=False) for f in tsvs),ignore_index=True)
 	data['subjectID'] = subject
-	data['sessionID'] = sessions
-	data['tags'] = tags
+	data['sessionID'] = session
+	data['tags'] = tag
 
 	columns = data.columns.tolist()
 	columns = cols[-3:] + cols[:-3]
