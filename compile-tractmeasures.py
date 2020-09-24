@@ -16,10 +16,10 @@ def concatenateData(tsvs,subject,session,tag):
 	data['tags'] = tag
 
 	columns = data.columns.tolist()
-	columns = cols[-3:] + cols[:-3]
+	columns = columns[-3:] + columns[:-3]
 	data = data[columns]
 
-	data.to_csv('./tractmeasures/tractmeasure.csv',sep='\t',index=False)
+	data.to_csv('./tractmeasures/tractmeasure.tsv',sep='\t',index=False)
 	
 def main():
 
