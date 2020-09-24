@@ -47,7 +47,7 @@ def main():
 
 	#### run command to generate csv structures ####
 	print("concatenating tractmeasures")
-	concatenateData(macro_path,subjects,sessions,tags)
+	concatenateData(tsvs,subjects,sessions,tags)
 
 if __name__ == '__main__':
 	main()
