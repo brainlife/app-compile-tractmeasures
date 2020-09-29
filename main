@@ -13,6 +13,8 @@ set -e
 
 if [ -f ./tractmeasures/tractmeasure.tsv ]; then
 	echo "complete"
+	mkdir -p ./tractmeasures/tractmeasures
+	mv ./tractmeasures/tractmeasure.tsv ./tractmeasures/tractmeasures/
 #	exit 0
 else
 	echo "stats computations failed somewhere. please check logs and derivatives"
