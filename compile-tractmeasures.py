@@ -66,7 +66,7 @@ def main():
 		os.mkdir(outdir)
 
 	#### save concatenated data structure ####
-	concat_data.to_csv('./tractmeasures/tractmeasures.tsv',sep='\t',index=False)
+	concat_data.to_csv('./tractmeasures/tractmeasure.tsv',sep='\t',index=False)
 
 if __name__ == '__main__':
 	main()
