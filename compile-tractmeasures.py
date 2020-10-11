@@ -35,7 +35,7 @@ def main():
 
 	print("setting up input parameters")
 	#### load config ####
-	with open('config.json',encoding='utf-8','r') as config_f:
+	with open('config.json',encoding='utf-8') as config_f:
 		config = json.load(config_f)
 
 	#### parse inputs ####
