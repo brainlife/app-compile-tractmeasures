@@ -10,16 +10,28 @@ import glob
 def concatenateTractData(tsvs,subject,session,tag):
 
 	tractFiles = glob.glob(tsvs+'/*dwi*')
-	tractNames = [ f.split('.stat.txt')[0].split('.')[-1:][0] for f in tractFiles ]
+	tractNames = [ f.split('.stat.txt')[0].split('.')[-1:][0] if 'no_result' not in f else f.split('.no_result.txt')[0].split('.')[-1:][0]+'_no_result' for f in tractFiles ]
 
 	# combine tsvs
 	data = pd.DataFrame([],dtype=object)
-	tmpdata = pd.read_csv(tractFiles[0],sep='\t',index_col=False,header=None)
+	no_result_cnt = ''
+	while no_result_cnt == '':
+		for tracts in range(len(tractNames)):
+			if 'no_result' not in tractNames[tracts]:
+				no_result_cnt = tracts
+				break
+
+	tmpdata = pd.read_csv(tractFiles[no_result_cnt],sep='\t',index_col=False,header=None)
 	data['measures'] = tmpdata[0]
 	data[tractNames[0]] = tmpdata[1]
-	for tracts in range(len(tractNames)-1):
-		tmpdata = pd.read_csv(tractFiles[tracts+1],sep='\t',index_col=False,header=None)
-		data[tractNames[tracts+1]] = tmpdata[1]
+	for tracts in range(len(tractNames)):
+		if tracts != no_result_cnt:
+			if 'no_result' not in tractNames[tracts]:
+				tmpdata = pd.read_csv(tractFiles[tracts],sep='\t',index_col=False,header=None)
+				data[tractNames[tracts]] = tmpdata[1]
+			else:
+				tmpdata[1] = [ np.nan for f in range(len(tmpdata[0])) ]
+				data[tractNames[tracts].split('_no_result')[0]] = tmpdata[1]
 
 	data['subjectID'] = [ subject for f in range(len(data[tractNames[0]])) ]
 	data['sessionID'] = [ session for f in range(len(data[tractNames[0]])) ]
@@ -50,6 +62,7 @@ def main():
 	else:
 		concat_data = pd.DataFrame([],dtype=object)
 		for TSVS in range(len(tsvs)):
+			print(TSVS)
 			#tmp = concatenateTractData(tsvs[TSVS],subjects[TSVS],sessions[TSVS],tags[TSVS])
 			concat_data = pd.concat([concat_data,concatenateTractData(tsvs[TSVS],subjects[TSVS],sessions[TSVS],tags[TSVS])])
 
