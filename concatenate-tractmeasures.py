@@ -39,8 +39,8 @@ def main():
         config = json.load(config_f)
 
     # make output directories
-    if not os.path.exists('./tractmeasures'):
-        os.mkdir('./tractmeasures')
+    if not os.path.exists('./output'):
+        os.mkdir('./output')
 
     # set input values
     csvs = config['csv']
@@ -49,7 +49,7 @@ def main():
     tags = [ f['tags'] for f in config['_inputs'] ]
     datatype_tags = [ f['datatype_tags'] for f in config['_inputs'] ]
 
-    outPath = './tractmeasures/tractmeasures.csv'
+    outPath = './output/tractmeasures.csv'
 
     # concatenate data
     data = concatenate_csvs(csvs,subjects,sessions,tags,datatype_tags)
