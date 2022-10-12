@@ -5,7 +5,7 @@
 
 singularity exec -e docker://brainlife/freesurfer-stats:1.2 ./concatenate-tractmeasures.py
 
-if [ ! -f ./tractmeasures/tractmeasures.csv ]; then
+if [ ! -f ./output/tractmeasures.csv ]; then
     echo "something failed. checked logs"
     exit 1
 else
