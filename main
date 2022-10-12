@@ -1,23 +1,14 @@
 #!/bin/bash
-
-#PBS -l nodes=1:ppn=1
-#PBS -l vmem=20gb
-#PBS -l walltime=0:30:00
-#PBS -N app-compile-tractmeasures
+#PBS -l nodes=1:ppn=1,vmem=14gb,walltime=00:30:00
+#PBS -N concatenate-tractmeasures
 #PBS -V
 
-set -e
+singularity exec -e docker://brainlife/freesurfer-stats:1.2 ./concatenate-tractmeasures.py
 
-# generate csv that can be useful in MLC analyses
-[ ! -f ./tractmeasures/output_FiberStats.csv ] && time singularity exec -e docker://brainlife/freesurfer-stats:1.2 ./compile-tractmeasures.py
-
-if [ -f ./tractmeasures/tractmeasure.tsv ]; then
-	echo "complete"
-	mkdir -p ./tractmeasures/tractmeasures
-	mv ./tractmeasures/tractmeasure.tsv ./tractmeasures/tractmeasures/
-#	exit 0
+if [ ! -f ./tractmeasures/tractmeasures.csv ]; then
+    echo "something failed. checked logs"
+    exit 1
 else
-	echo "stats computations failed somewhere. please check logs and derivatives"
-#	exit 1
+    echo "complete"
+    exit 0
 fi
-
