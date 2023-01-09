@@ -16,8 +16,7 @@ def concatenate_csvs(csvs,subjects,sessions,tags,datatype_tags):
         if 'subjectID' not in tmp.keys().tolist():
             tmp['subjectID'] = [ subjects[i] for f in range(len(tmp)) ]
         if 'sessionID' not in tmp.keys().tolist():
-            if sessions:
-                tmp['sessionID'] = [ sessions[i] for f in range(len(tmp)) ]
+            tmp['sessionID'] = [ sessions[i] for f in range(len(tmp)) ]
 
         # add tags and datatype tags
         if 'tags' not in tmp.keys().tolist():
@@ -46,7 +45,7 @@ def main():
     # set input values
     csvs = config['csv']
     subjects = [ f['meta']['subject'] for f in config['_inputs'] ]
-    sessions = [ f['meta']['session'] for f in config['_inputs'] ]
+    sessions = [ f['meta']['session'] if 'session' in f['meta'].keys() else 'None' for f in config['_inputs'] ]
     tags = [ f['tags'] for f in config['_inputs'] ]
     datatype_tags = [ f['datatype_tags'] for f in config['_inputs'] ]
 
