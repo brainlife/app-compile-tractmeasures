@@ -1,87 +1,145 @@
-[![Abcdspec-compliant](https://img.shields.io/badge/ABCD_Spec-v1.1-green.svg)](https://github.com/brain-life/abcd-spec)
-[![Run on Brainlife.io](https://img.shields.io/badge/Brainlife-brainlife.app.436-blue.svg)](https://doi.org/https://doi.org/10.25663/brainlife.app.436)
+<h1 align="center">Compile tractmeasures</h1>
 
-# Compile measures from dsistudio tractmeasures datatype
+<p align="center">
+  One group-level table from the per-subject tract measures of a whole project, with subject, session and tag columns added.
+</p>
 
-This app will This app will compile the tsv outputs for each tract from dsistudio into a single csv to ease downstream analyses. This is done using python, specifically nibabel, pandas and numpy.
+<p align="center">
+  <a href="https://github.com/brainlife/abcd-spec"><img src="https://img.shields.io/badge/ABCD_Spec-v1.1-green.svg" alt="ABCD Spec v1.1"></a>
+  <a href="https://doi.org/10.25663/brainlife.app.436"><img src="https://img.shields.io/badge/Brainlife-brainlife.app.436-blue.svg" alt="Run on brainlife.io"></a>
+  <a href="https://github.com/brainlife/app-compile-tractmeasures/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="MIT license"></a>
+</p>
 
-### Authors
+> 📍 **This branch, `tracts-v1.0`, is the brainlife.io App Compile measures from dsistudio tractmeasures datatype** ([doi:10.25663/brainlife.app.436](https://doi.org/10.25663/brainlife.app.436)). The other Apps in this repository are listed under **Versions on brainlife.io** below.
 
-- Brad Caron (bacaron@utexas.edu)
+## 🧠 At a glance
 
-### Contributors
+<!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
 
-- Soichi Hayashi (shayashi@iu.edu)
+> **Compiles per-tract DSI Studio tractmeasures (stat.txt files) from many subjects into one tsv with one column per tract and subject, session and tag columns using pandas; a group-analysis utility.**
 
-### Funding Acknowledgement
+For each input, reads the DSI Studio per-tract statistics files (*.stat.txt; tracts with *.no_result.txt get NaN), builds a table of measures by tract, adds subjectID, sessionID and tags from the input metadata and concatenates all subjects. Use it to collect DSI Studio autotrack measures across a project for statistics.
 
-brainlife.io is publicly funded and for the sustainability of the project it is helpful to Acknowledge the use of the platform. We kindly ask that you acknowledge the funding below in your publications and code reusing this code.
+| | |
+|---|---|
+| 📥 **Inputs** | `neuro/dsistudio/tractmeasures` |
+| 📤 **Outputs** | `neuro/dsistudio/tractmeasures` |
+| 🐳 **Container** | `brainlife/freesurfer-stats:1.2` |
+| ⚙️ **Resources** | 1 CPUs · 20 GB memory |
+| 🔗 **Run it** | [doi.org/10.25663/brainlife.app.436](https://doi.org/10.25663/brainlife.app.436) |
 
-[![NSF-BCS-1734853](https://img.shields.io/badge/NSF_BCS-1734853-blue.svg)](https://nsf.gov/awardsearch/showAward?AWD_ID=1734853)
-[![NSF-BCS-1636893](https://img.shields.io/badge/NSF_BCS-1636893-blue.svg)](https://nsf.gov/awardsearch/showAward?AWD_ID=1636893)
-[![NSF-ACI-1916518](https://img.shields.io/badge/NSF_ACI-1916518-blue.svg)](https://nsf.gov/awardsearch/showAward?AWD_ID=1916518)
-[![NSF-IIS-1912270](https://img.shields.io/badge/NSF_IIS-1912270-blue.svg)](https://nsf.gov/awardsearch/showAward?AWD_ID=1912270)
-[![NIH-NIBIB-R01EB029272](https://img.shields.io/badge/NIH_NIBIB-R01EB029272-green.svg)](https://grantome.com/grant/NIH/R01-EB029272-01)
+#### 📥 Inputs
 
-### Citations
+| Input | Datatype | Required | Description |
+|---|---|---|---|
+| `tractmeasures` | `neuro/dsistudio/tractmeasures` | yes | DSI Studio tractmeasures directories of several subjects, each holding one stat.txt (or no_result.txt) file per tract. |
 
-We kindly ask that you cite the following articles when publishing papers and code using this code.
+#### 📤 Outputs
 
-1. Avesani, P., McPherson, B., Hayashi, S. et al. The open diffusion data derivatives, brain data upcycling via integrated publishing of derivatives and reproducible open cloud services. Sci Data 6, 69 (2019). https://doi.org/10.1038/s41597-019-0073-y
+| Output | Datatype | Description |
+|---|---|---|
+| `tractmeasures` | `neuro/dsistudio/tractmeasures` | Single tsv (tractmeasures/tractmeasure.tsv) with rows per measure and subject, one column per tract, plus subjectID, sessionID and tags. |
 
-2. Yeh, Fang-cheng. 'Shape Analysis of the Human Association Pathways.' Neuroimage (2020).
+<!-- brainlife-app:end -->
 
-#### MIT Copyright (c) 2020 brainlife.io The University of Texas at Austin and Indiana University
+## 🏷️ Versions on brainlife.io
 
-## Running the App
+This repository hosts three Apps, each built from its own branch. They do the same job, stacking per-subject tables into one, for different kinds of tract measures.
 
-### On Brainlife.io
+| App | Input | Branch | Run it | Status |
+|---|---|---|---|---|
+| Compile tractmeasures csvs across project into one dataframe | `neuro/tractmeasures` (csv) | [`tractmeasures-non-dsistudio-v1.0`](https://github.com/brainlife/app-compile-tractmeasures/tree/tractmeasures-non-dsistudio-v1.0) | [doi:10.25663/brainlife.app.683](https://doi.org/10.25663/brainlife.app.683) | current |
+| **Compile measures from dsistudio tractmeasures datatype** (this branch) | `neuro/dsistudio/tractmeasures` | [`tracts-v1.0`](https://github.com/brainlife/app-compile-tractmeasures/tree/tracts-v1.0) | [doi:10.25663/brainlife.app.436](https://doi.org/10.25663/brainlife.app.436) | available |
+| Compile qc data from tractmeasures (tsv) data | `dsistudio/tractmeasure` (QC tsv) | [`qc-v1.0`](https://github.com/brainlife/app-compile-tractmeasures/tree/qc-v1.0) | [doi:10.25663/brainlife.app.432](https://doi.org/10.25663/brainlife.app.432) | available |
 
-You can submit this App online at [https://doi.org/https://doi.org/10.25663/brainlife.app.436](https://doi.org/https://doi.org/10.25663/brainlife.app.436) via the 'Execute' tab.
+- **tractmeasures csvs** (`tractmeasures-non-dsistudio-v1.0`): concatenates the csv files of any `neuro/tractmeasures` datasets (for example tract profiles) and adds `subjectID`, `sessionID`, `tags` and `datatype_tags` columns when they are missing.
+- **DSI Studio tractmeasures** (`tracts-v1.0`): reads the per-tract DSI Studio statistics files (`*.stat.txt`) of each subject into a table of measures by tract; tracts with a `*.no_result.txt` file get `NaN`.
+- **DSI Studio QC** (`qc-v1.0`): stacks DSI Studio QC tsv files into one tsv.
 
-### Running Locally (on your machine)
+All three are written in Python with [pandas](https://pandas.pydata.org/) and only reshape the tables; they do not change the values.
 
-1. git clone this repo
+## 🚀 Running the App
 
-2. Inside the cloned directory, create `config.json` with something like the following content with paths to your input files.
+### ☁️ On brainlife.io
 
-```json
-{
-	"tractmeasures": "/input/tractmeasures/"
-}
-```
+Open the App at [doi.org/10.25663/brainlife.app.683](https://doi.org/10.25663/brainlife.app.683) (or one of the other versions above), select the tractmeasures datasets of all the subjects and sessions you want to combine and press **Execute**. The compiled table is archived to your project as a single dataset (tagged `group_analysis` for the csv App, `compiled` for the DSI Studio Apps), ready for group statistics.
 
-### Sample Datasets
+### 💻 Locally
 
-You can download sample datasets from Brainlife using [Brainlife CLI](https://github.com/brain-life/cli).
+You need [Singularity/Apptainer](https://apptainer.org/). `main` runs the Python script inside the `brainlife/freesurfer-stats:1.2` container; without Singularity, install Python 3 with pandas.
 
-```
-npm install -g brainlife
-bl login
-mkdir input
-bl dataset download
-```
+1. Clone this repository and check out the App's branch, for example `git checkout tractmeasures-non-dsistudio-v1.0`.
+2. Create `config.json`. The Apps read the subject, session and tags of each input from the `_inputs` list that brainlife.io writes into `config.json`, so a local config needs it too. For the csv App:
 
-3. Launch the App by executing 'main'
+   ```json
+   {
+       "csv": [
+           "/input/sub-01/tractmeasures.csv",
+           "/input/sub-02/tractmeasures.csv"
+       ],
+       "_inputs": [
+           { "meta": { "subject": "01", "session": "1" }, "tags": [], "datatype_tags": [] },
+           { "meta": { "subject": "02", "session": "1" }, "tags": [], "datatype_tags": [] }
+       ]
+   }
+   ```
 
-```bash
-./main 
-```
+   The two DSI Studio Apps take a list of input directories under the key `tractmeasures` instead of `csv`.
 
-## Output
+3. Run the App:
 
-The main output of this App is a tractmeasures datatype containing a csv with the statistics for each tract combined.
+   ```bash
+   ./main
+   ```
 
-#### Product.json
+## 📦 Outputs
 
-The secondary output of this app is `product.json`. This file allows web interfaces, DB and API calls on the results of the processing.
+| App | Output |
+|---|---|
+| tractmeasures csvs | `output/tractmeasures.csv`: all input rows plus `subjectID`, `sessionID`, `tags` and `datatype_tags` columns |
+| DSI Studio tractmeasures | `tractmeasures/tractmeasure.tsv`: one row per measure and subject, one column per tract, plus `subjectID`, `sessionID` and `tags` |
+| DSI Studio QC | `tractmeasures/tractmeasure.tsv`: all input rows plus `subjectID`, `sessionID` and `tags` |
 
-### Dependencies
+## 🩺 Troubleshooting
 
-This App only requires [singularity](https://www.sylabs.io/singularity/) to run. If you don't have singularity, you will need to install following dependencies.   
+- **`something failed. checked logs`** (csv App): `output/tractmeasures.csv` was not written. Check the log for a pandas error reading one of the input csv files.
 
-- nibabel: https://nipy.org/nibabel/
-- numpy: https://numpy.org/
-- pandas: https://pandas.pydata.org/
+## 📚 Citing
 
-#### MIT Copyright (c) 2020 brainlife.io The University of Texas at Austin and Indiana University
+> [!TIP]
+> If you use this App in your work, please cite the App, the software it builds on and brainlife.io (below). GitHub's **Cite this repository** button gives the App citation in APA and BibTeX.
+
+- Yeh F-C. Shape analysis of the human association pathways. *NeuroImage* (2020).
+- Compile measures from dsistudio tractmeasures datatype. brainlife.io App. [doi:10.25663/brainlife.app.436](https://doi.org/10.25663/brainlife.app.436)
+- Fischl. FreeSurfer. *NeuroImage* 62:774-781 (2012). [doi:10.1016/j.neuroimage.2012.01.021](https://doi.org/10.1016/j.neuroimage.2012.01.021)
+- Hayashi S, Caron BA, Heinsfeld AS, et al. brainlife.io: a decentralized and open-source cloud platform to support neuroscience research. *Nature Methods* 21:809–813 (2024). [doi:10.1038/s41592-024-02237-2](https://doi.org/10.1038/s41592-024-02237-2)
+- Avesani P, McPherson B, Hayashi S, et al. The open diffusion data derivatives, brain data upcycling via integrated publishing of derivatives and reproducible open cloud services. *Scientific Data* 6:69 (2019). [doi:10.1038/s41597-019-0073-y](https://doi.org/10.1038/s41597-019-0073-y)
+
+## 👥 Authors
+
+- Brad Caron
+
+**Contributors:** Soichi Hayashi
+
+## 💰 Funding
+
+[![Wellcome-226486/Z/22/Z](https://img.shields.io/badge/Wellcome-226486%2FZ%2F22%2FZ-purple.svg)](https://wellcome.org/)
+[![NIH-NINDS-U24NS140384](https://img.shields.io/badge/NIH_NINDS-U24NS140384-green.svg)](https://reporter.nih.gov/project-details/11261037)
+[![NIH-NINDS-UM1NS132207](https://img.shields.io/badge/NIH_NINDS-UM1NS132207-green.svg)](https://reporter.nih.gov/project-details/11411328)
+[![NIH-NIBIB-R01EB029272](https://img.shields.io/badge/NIH_NIBIB-R01EB029272-green.svg)](https://reporter.nih.gov/project-details/10262925)
+[![NIH-NIBIB-R01EB030896](https://img.shields.io/badge/NIH_NIBIB-R01EB030896-green.svg)](https://reporter.nih.gov/project-details/10428625)
+[![NIH-NIMH-R01MH126699](https://img.shields.io/badge/NIH_NIMH-R01MH126699-green.svg)](https://reporter.nih.gov/project-details/10460628)
+[![NIH-NIDCD-R01DC020088](https://img.shields.io/badge/NIH_NIDCD-R01DC020088-green.svg)](https://reporter.nih.gov/project-details/11140284)
+[![NSF-BCS-1734853](https://img.shields.io/badge/NSF_BCS-1734853-blue.svg)](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1734853)
+[![NSF-BCS-2203524](https://img.shields.io/badge/NSF_BCS-2203524-blue.svg)](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2203524)
+[![NSF-IIS-1636893](https://img.shields.io/badge/NSF_IIS-1636893-blue.svg)](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1636893)
+[![NSF-OAC-2148729](https://img.shields.io/badge/NSF_OAC-2148729-blue.svg)](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2148729)
+[![NSF-IIS-1912270](https://img.shields.io/badge/NSF_IIS-1912270-blue.svg)](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1912270)
+[![NSF-IIS-2148700](https://img.shields.io/badge/NSF_IIS-2148700-blue.svg)](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2148700)
+[![NSF-OAC-1916518](https://img.shields.io/badge/NSF_OAC-1916518-blue.svg)](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1916518)
+
+<sub>brainlife.io is publicly funded, and acknowledging that support helps keep it running. This App was developed with support from Wellcome, the U.S. National Institutes of Health (including the BRAIN Initiative BRAIN CONNECTS program: The Axonal Projectome EXchange, U24NS140384, and the Center for Mesoscale Connectomics, UM1NS132207) and the U.S. National Science Foundation.</sub>
+
+## ⚖️ License
+
+[MIT](https://github.com/brainlife/app-compile-tractmeasures/blob/master/LICENSE), Copyright (c) 2020 brainlife.io, The University of Texas at Austin and Indiana University.
