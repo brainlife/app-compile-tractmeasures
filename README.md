@@ -3,6 +3,26 @@
 
 # Compile measures from dsistudio tractmeasures datatype
 
+<!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
+
+**Concatenates tractmeasures csv files from many subjects into one csv, adding subject, session, tag and datatype-tag columns with pandas; a group-analysis utility.**
+
+Reads each input tractmeasures csv, adds subjectID, sessionID, tags and datatype_tags columns from the brainlife input metadata when they are missing, and stacks all rows into output/tractmeasures.csv. Use it to build one dataframe of tract profiles or measures across a project; for DSI Studio tractmeasures use the DSI Studio-specific App.
+
+Run it on brainlife.io: [https://doi.org/10.25663/brainlife.app.683](https://doi.org/10.25663/brainlife.app.683)
+
+| Input | Datatype | Required | Description |
+|---|---|---|---|
+| `tractmeasures` | `neuro/tractmeasures` | yes | tractmeasures csv files of several subjects/sessions (one per input). |
+
+| Output | Datatype | Description |
+|---|---|---|
+| `output` | `neuro/tractmeasures` | Single csv (tractmeasures.csv) with all input rows plus subjectID, sessionID, tags and datatype_tags columns. |
+
+Runtime: container `brainlife/freesurfer-stats:1.2`; 2 CPUs; 0.5 h walltime.
+
+<!-- brainlife-app:end -->
+
 This app will This app will compile the tsv outputs for each tract from dsistudio into a single csv to ease downstream analyses. This is done using python, specifically nibabel, pandas and numpy.
 
 ### Authors
